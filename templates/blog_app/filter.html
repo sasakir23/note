@@ -1,0 +1,37 @@
+<h4 class="card-title text-secondary text-center">絞り込み検索</h4>
+<form method="GET" action="{% url 'blog_app:index' %}">
+ <div class="form-row">
+     <div class="form-group col-12">
+         <div class="input-group">
+             <input class="form-control py-2 border-right-0 border" type="search" name="title_or_user" placeholder="タイトル or ユーザー名..." value="{{request.GET.title_or_user}}" />
+             <span class="input-group-append">
+                 <div class="input-group-text bg-transparent">
+                     <i class="fa fa-search"></i>
+                 </div>
+             </span>
+         </div>
+     </div>        
+ </div>
+ <div class="form-row">
+   <div class="form-group col-md-12 col-lg-6">
+     <label for="publishDateMin">開始日〜</label>
+     <input type="date" class="form-control" id="publishDateMin" name="date_min" value="{{request.GET.date_min}}">
+   </div>
+   <div class="form-group col-md-12 col-lg-6">
+     <label for="publishDateMax">〜終了日</label>
+     <input type="date" class="form-control" id="publishDateMax" name="date_max" value="{{request.GET.date_max}}">
+   </div>
+   <div class="form-group col-md-12">
+     <label for="category">タグ</label>
+     <select id="tag" class="form-control" name="tag">
+       <option selected>タグを選択...</option>
+       <!-- setting.pyからの読み込み ここから -->
+       {% for tag in tags %}
+       <option value="{{ tag }}">{{ tag }}</option>
+       {% endfor %}
+       <!-- setting.pyからの読み込み ここまで -->
+     </select>
+   </div>
+ </div>
+ <button style="width: 100%;" type="submit" class="btn btn-primary">絞り込み</button>
+</form>

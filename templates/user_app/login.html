@@ -1,0 +1,15 @@
+{% extends 'blog_app/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<h1 class="mt-5 pt-4 text-center">Login</h1>
+<form method="post">
+{% csrf_token %}
+<label for="id_username" class="sr-only">ユーザー名</label>
+<input type="text" name="username" placeholder="ユーザー名" autofocus autocapitalize="none" autocomplete="username" maxlength="150" class="form-control mb-3" required id="id_username">
+
+<label for="id_password" class="sr-only">パスワード</label>
+<input type="password" name="password" autocomplete="current-password" placeholder="パスワード" class="form-control mb-3" required id="id_password">
+
+<button type="submit" class="btn btn-block btn-outline-success">Login</button>
+</form>
+{% endblock %}

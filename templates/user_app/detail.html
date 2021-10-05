@@ -1,0 +1,29 @@
+{% extends 'blog_app/base.html' %}
+{% block content %}
+<h1 class="text-center my-5">{{ user.username }}のページ</h1>
+
+<div class="text-center"><a href="{% url 'user_app:edit' user_id=user.id %}"><button type="button"
+      class="btn btn-outline-info">{{user}} 編集</button></a></div> 
+
+<div class="d-flex justify-content-center flex-wrap">
+  {% for post in posts%}
+  <a href="{% url 'blog_app:detail' post_id=post.id %}">
+    <div class="card m-4" style="min-width: 300; max-height: 490;">
+      {% if post.image %}
+      <img style="max-width: 300; max-height: 300;" class="card-img-top" src="{{ post.image.url }}">
+      {% else %}
+      <div class="p-1 border border-secondary text-center pt-5" style="min-width: 300; min-height: 225;">No Image</div>
+      {% endif %}
+      <div class="card-body">
+        <h4 class="card-title">{{post.title|truncatechars:10 | linebreaksbr}}</h4>
+        <p class="card-text">
+          {{ post.text|truncatechars:17 }}
+        </p>
+  </a>
+  <p>#{{post.tag}}</p>
+  <p>{{post.created_at}}</p>
+</div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

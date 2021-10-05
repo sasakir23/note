@@ -1,0 +1,24 @@
+{% extends 'blog_app/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<h1 class="mt-5 pt-4 text-center">{{user.username}}を編集</h1>
+<form class="form-signin" method="post">
+    {% csrf_token %}
+
+    <label for="id_username" class="text-secondary">名前</label>
+    {{ form.username|add_class:"form-control mb-3" }}
+
+    <label for="id_email" class="text-secondary">メールアドレス</label>
+    {{ form.email|add_class:"form-control mb-3"}}
+
+    <label for="id_password1" class="text-secondary">新しいパスワード</label>
+    {{ form.password1|add_class:"form-control mb-3"}}
+
+    <label for="id_password2" class="text-secondary">パスワード(確認用)</label>
+    {{ form.password2|add_class:"form-control mb-3"}}
+
+    <button type="submit" class="btn btn-block btn-outline-success">編集</button>
+</form>
+<a href="{% url 'user_app:delete' user_id=user.id %}"><button type="button"
+        class="btn btn-outline-danger">退会する</button></a>
+{% endblock %}

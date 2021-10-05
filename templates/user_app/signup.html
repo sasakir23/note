@@ -1,0 +1,28 @@
+{% extends 'blog_app/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<h1 class="mt-5 pt-4 text-center">Signup</h1>
+<form class="form-signin" method="post">
+    {% csrf_token %}
+    <label for="id_username" class="sr-only">ユーザー名</label>
+    <input type="text" name="username" placeholder="名前" maxlength="150" class="form-control mb-3" required
+        id="id_username" autofocus>
+
+    <label for="id_email" class="sr-only">メールアドレス</label>
+    <input type="email" name="email" placeholder="メールアドレス" maxlength="254" class="form-control mb-3" required
+        id="id_email">
+
+    <label for="id_password1" class="sr-only">パスワード</label>
+    <input type="password" name="password1" placeholder="パスワード" autocomplete="new-password" class="form-control mb-3"
+        id="id_password1">
+
+    <label for="id_password2" class="sr-only">パスワード(確認用)</label>
+    <input type="password" name="password2" placeholder="パスワード(確認用)" autocomplete="new-password"
+        class="form-control mb-3" required id="id_password2">
+
+    <button type="submit" class="btn btn-block btn-outline-success">Signup</button>
+</form>
+<p>既にアカウントをお持ちですか?? <a href="{% url 'user_app:login' %}">Login</a></p>
+</div>
+</div>
+{% endblock %}

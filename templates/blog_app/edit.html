@@ -1,0 +1,26 @@
+{% extends 'blog_app/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<h1 class="mt-5 pt-4 text-center">編集</h1>
+<form method="POST" enctype="multipart/form-data">
+ {% csrf_token %}
+
+ <label for="id_title" class="sr-only">タイトル</label>
+ {{ form.title|add_class:"form-control mb-3"}}
+ <label for="id_text" class="sr-only">本文</label>
+ {{ form.text|add_class:"form-control mb-3"}}
+
+ <div class="mb-3 form-control text-secondary">
+   <label>画像</label>
+       {{ form.image }}
+   </div>
+
+ <div class="my-5">
+   <label for="id_tag" class="sr-only">タグ</label>
+   {{ form.tag|add_class:"custom-select" }}
+ </div>
+
+ <button type="submit" class="btn btn-block btn-outline-success">編集する</button>
+</form>
+
+{% endblock %}
